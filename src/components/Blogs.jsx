@@ -23,7 +23,7 @@ function Blogs() {
             }
           })
 
-        axios.get("https://main--cerulean-speculoos-8cdd81.netlify.app/blogs").then((res) => {
+        axios.get("http://localhost:5000/api/blogs").then((res) => {
             console.log(res.data)
             setBlogs(res.data)
         }).catch(() => {
@@ -39,10 +39,10 @@ function Blogs() {
 
     const handleLike = async (blog_id) => {
         try {
-            const response = await axios.patch(`https://main--cerulean-speculoos-8cdd81.netlify.app/blogs/like/${blog_id}`);
+            const response = await axios.patch(`http://localhost:5000/api/blogs/like/${blog_id}`);
             // After successfully updating the likes count in the backend, fetch the updated list of blogs
             if (response.status === 200) {
-                axios.get("https://main--cerulean-speculoos-8cdd81.netlify.app/blogs").then((res) => {
+                axios.get("http://localhost:5000/api/blogs").then((res) => {
                     console.log(res.data)
                     setBlogs(res.data)
                 }).catch(() => {
@@ -61,10 +61,10 @@ function Blogs() {
 
 
         const likes = 0
-        axios.post("https://main--cerulean-speculoos-8cdd81.netlify.app/blogs", { newTitle, date, newContent, likes }).then((res) => {
+        axios.post("http://localhost:5000/api/blogs", { newTitle, date, newContent, likes }).then((res) => {
             console.log(res.data)
 
-            axios.get("https://main--cerulean-speculoos-8cdd81.netlify.app/blogs").then((res) => {
+            axios.get("http://localhost:5000/api/blogs").then((res) => {
                 console.log(res.data)
                 setBlogs(res.data)
             }).catch(() => {
@@ -107,7 +107,7 @@ function Blogs() {
                         required
                     />
                     <button type="submit" className="bg-orange-400 text-white p-2 rounded hover:bg-orange-600">
-                        Add Blog
+                        Add Blog Here
                     </button>
                 </form>
             </div>):("")
